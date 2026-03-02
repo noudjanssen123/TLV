@@ -65,13 +65,42 @@ bool tlv_read_available(TLV_Message_t *msg);
  * @return TLV_Node_t* 
  */
 TLV_Node_t *tlv_read(TLV_Message_t *msg);
-
+/**
+ * @brief Get the size of the message.
+ * 
+ * @param msg 
+ * @return size_t 
+ */
 size_t tlv_size(TLV_Message_t *msg);
-
+/**
+ * @brief Enter a nest.
+ * 
+ * @param msg 
+ * @param tag of the root node
+ * @return true if enough space available to nest
+ * @return false 
+ */
 bool tlv_nest(TLV_Message_t *msg,uint8_t tag);
+/**
+ * @brief Exit the current nest.
+ * 
+ * @param msg 
+ */
 void tlv_unnest(TLV_Message_t *msg);
+/**
+ * @brief Exit all nests
+ * 
+ * @param msg 
+ */
 void tlv_unnest_recursive(TLV_Message_t *msg);
 
+/**
+ * @brief Allocate a node on a message.
+ * 
+ * @param msg to allocate on
+ * @param len length of the *value* part of the node.
+ * @return TLV_Node_t* node which was allocated. NULL if not enough space.
+ */
 TLV_Node_t *tlv_alloc(TLV_Message_t *msg,size_t len);
 
 
@@ -82,5 +111,8 @@ bool tlv_push_u24(TLV_Message_t *msg,uint8_t tag, uint32_t value);
 bool tlv_push_u32(TLV_Message_t *msg,uint8_t tag, uint32_t value);
 bool tlv_push_u64(TLV_Message_t *msg,uint8_t tag, uint64_t value);
 
+// TODO TLV Nodes to values
+// uint8_t tlv_node_to_u8(TLV_Node_t *node);
+// etc...
 
 #endif // TLV_H_
